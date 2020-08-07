@@ -67,14 +67,42 @@ function extractProps(view: Component, propTypes: object) {
   return pickBy(filter, view.props);
 }
 
+const TouchableWithoutFeedbackPropTypes = [
+  "accessible",
+  "accessibilityLabel",
+  "accessibilityHint",
+  "accessibilityIgnoresInvertColors",
+  "accessibilityRole",
+  "accessibilityState",
+  "accessibilityActions",
+  "onAccessibilityAction",
+  "accessibilityValue",
+  "accessibilityLiveRegion",
+  "importantForAccessibility",
+  "accessibilityViewIsModal",
+  "accessibilityElementsHidden",
+  "onFocus",
+  "onBlur",
+  "disabled",
+  "onPress",
+  "onPressIn",
+  "onPressOut",
+  "onLayout",
+  "touchSoundDisabled",
+  "onLongPress",
+  "nativeID",
+  "testID",
+  "delayPressIn",
+  "delayPressOut",
+  "delayLongPress",
+  "pressRetentionOffset",
+  "hitSlop"
+];
+
 // Extract Touchable props from the given component instance.
 // - {`object`} `view` the component instance
 function extractTouchableProps(view: Component) {
-  return extractProps(view, {
-    // @ts-ignore: View.propTypes
-    ...TouchableWithoutFeedback.propTypes,
-    testID: PropTypes.string,
-  });
+  return extractProps(view, [...TouchableWithoutFeedbackPropTypes, "testID"]);
 }
 
 // ## Public interface
