@@ -48,10 +48,11 @@
     "typescript": "^3.7.5"
   },
   "dependencies": {
+    "@types/react": "^16.9.44",
     "ramda": "^0.27.0"
   },
   "peerDependencies": {
-    "react": "*",
+    "react": ">=16.7",
     "react-native": ">=0.50.0"
   },
   "scripts": {
@@ -68,6 +69,9 @@
     "api-md": "api-documenter markdown --input-folder temp --output-folder docs/api"
   },
   "jest": {
-    "testPathIgnorePatterns": [ "/node_modules/", "/example/" ]
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/example/"
+    ]
   }
 }

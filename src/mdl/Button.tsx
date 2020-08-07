@@ -5,21 +5,23 @@
  *
  * Created by ywu on 15/7/2.
  */
-import React, { Component, SFC } from 'react';
+import React, { Component, FC } from "react";
 import {
   LayoutChangeEvent,
   TextStyle,
   TouchableWithoutFeedback,
   TouchableWithoutFeedbackProps,
-} from 'react-native';
+} from "react-native";
 
-import MKColor from '../MKColor';
-import { AttrValue, getTheme, Theme } from '../theme';
-import * as utils from '../utils';
-import Ripple, { RippleProps } from './Ripple';
+import MKColor from "../MKColor";
+import { AttrValue, getTheme, Theme } from "../theme";
+import * as utils from "../utils";
+import Ripple, { RippleProps } from "./Ripple";
 
 /** Props of {@link Button}, which extends {@link RippleProps} and {@link @types/react-native#TouchableWithoutFeedbackProps | TouchableWithoutFeedbackProps} */
-export interface ButtonProps extends TouchableWithoutFeedbackProps, RippleProps {
+export interface ButtonProps
+  extends TouchableWithoutFeedbackProps,
+    RippleProps {
   /**
    * Whether this's a FAB.
    * @defaultValue `false`
@@ -49,14 +51,14 @@ const defaultProps: ButtonProps = {
   ...Ripple.defaultProps,
   enabled: true,
   fab: false,
-  pointerEvents: 'box-only',
+  pointerEvents: "box-only",
 };
 
 // default button props
 const defaultStyle: ButtonProps = {
   style: {
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
     padding: 8,
   },
 };
@@ -115,7 +117,11 @@ export default class Button extends Component<ButtonProps, ButtonState> {
 
     return (
       <TouchableWithoutFeedback {...touchableProps}>
-        <Ripple {...this.props} {...maskProps} style={[this.props.style, fabStyle]} />
+        <Ripple
+          {...this.props}
+          {...maskProps}
+          style={[this.props.style, fabStyle]}
+        />
       </TouchableWithoutFeedback>
     );
   }
@@ -136,46 +142,54 @@ export default class Button extends Component<ButtonProps, ButtonState> {
 }
 
 /** Default raised button */
-export const RaisedButton: SFC<ButtonProps> = props => customizedButton(raisedButton(), props);
+export const RaisedButton: FC<ButtonProps> = (props) =>
+  customizedButton(raisedButton(), props);
 
 /** Primary raised button */
-export const ColoredRaisedButton: SFC<ButtonProps> = props => customizedButton(coloredRaisedButton(), props);
+export const ColoredRaisedButton: FC<ButtonProps> = (props) =>
+  customizedButton(coloredRaisedButton(), props);
 
 /** Raised button with Accent color */
-export const AccentRaisedButton: SFC<ButtonProps> = props => customizedButton(accentRaisedButton(), props);
+export const AccentRaisedButton: FC<ButtonProps> = (props) =>
+  customizedButton(accentRaisedButton(), props);
 
 /** Flat button (text button) */
-export const FlatButton: SFC<ButtonProps> = props => customizedButton(flatButton(), props);
+export const FlatButton: FC<ButtonProps> = (props) =>
+  customizedButton(flatButton(), props);
 
 /** Default floating action button */
-export const Fab: SFC<ButtonProps> = props => customizedButton(fab(), props);
+export const Fab: FC<ButtonProps> = (props) => customizedButton(fab(), props);
 
 /** Primary floating action button */
-export const ColoredFab: SFC<ButtonProps> = props => customizedButton(coloredFab(), props);
+export const ColoredFab: FC<ButtonProps> = (props) =>
+  customizedButton(coloredFab(), props);
 
 /** Accent colored floating action button */
-export const AccentFab: SFC<ButtonProps> = props => customizedButton(accentFab(), props);
+export const AccentFab: FC<ButtonProps> = (props) =>
+  customizedButton(accentFab(), props);
 
 /** Factory method to create a button variance */
 function customizedButton(
   { style: baseStyle, ...baseProps }: ButtonProps,
   { style: customStyle, ...customProps }: ButtonProps
 ): JSX.Element {
-  return <Button {...baseProps} {...customProps} style={[baseStyle, customStyle]} />;
+  return (
+    <Button {...baseProps} {...customProps} style={[baseStyle, customStyle]} />
+  );
 }
 
 /** Text style for buttons, default color is `black` */
-function buttonText(theme = getTheme(), color: AttrValue = 'black'): TextStyle {
+function buttonText(theme = getTheme(), color: AttrValue = "black"): TextStyle {
   return {
     color: color as string, // AttrValue resolved to string or number when retrieved from a Theme
     fontSize: theme.fontSize as number,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   };
 }
 
 /** Text style for colored buttons */
 function coloredButtonText(theme = getTheme()): TextStyle {
-  return buttonText(theme, 'white');
+  return buttonText(theme, "white");
 }
 
 /** Text style using primary color */
@@ -211,7 +225,7 @@ function coloredRaisedButton(
         backgroundColor: backgroundColor as string,
         borderRadius: 2,
         elevation: 4,
-        shadowColor: 'black',
+        shadowColor: "black",
         shadowOffset: { width: 0, height: 0.5 },
         shadowOpacity: 0.7,
         shadowRadius: 1,
@@ -226,7 +240,10 @@ function accentRaisedButton(theme = getTheme()): ButtonProps {
 }
 
 /** Props for a default flat button */
-function flatButton(theme = getTheme(), rippleColor: AttrValue = theme.bgPlain): ButtonProps {
+function flatButton(
+  theme = getTheme(),
+  rippleColor: AttrValue = theme.bgPlain
+): ButtonProps {
   const { style, ...props } = defaultStyle;
   return {
     ...props,
@@ -244,17 +261,20 @@ function flatButton(theme = getTheme(), rippleColor: AttrValue = theme.bgPlain):
 }
 
 /** Props for a colored floating action button */
-function coloredFab(theme = getTheme(), backgroundColor: AttrValue = theme.primaryColor): ButtonProps {
+function coloredFab(
+  theme = getTheme(),
+  backgroundColor: AttrValue = theme.primaryColor
+): ButtonProps {
   const { style, ...props } = defaultStyle;
   return {
     ...props,
-    rippleLocation: 'center',
+    rippleLocation: "center",
     style: [
       style,
       {
         backgroundColor: backgroundColor as string,
         elevation: 4,
-        shadowColor: 'black',
+        shadowColor: "black",
         shadowOffset: { width: 0, height: 0.5 },
         shadowOpacity: 0.4,
         shadowRadius: 1,
