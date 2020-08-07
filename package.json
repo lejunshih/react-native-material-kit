@@ -64,6 +64,7 @@
     "ln": "ln -f src/mdl/Spinner.ios.tsx src/mdl/Spinner.tsx",
     "build-publish": "yarn build-docs && yarn clean-ln && rm lib/mdl/Spinner.js",
     "setup": "mkdir temp etc dist docs",
+    "prepare": "yarn build-publish",
     "api-md": "api-documenter markdown --input-folder temp --output-folder docs/api"
   },
   "jest": {
