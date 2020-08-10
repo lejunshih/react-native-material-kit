@@ -50,9 +50,7 @@ lib/**/*.js.map
 !lib/react-native-material-kit.d.ts
 
 __tests__/
-src/
 example/
 docs/
-dist/
 etc/
 temp/
