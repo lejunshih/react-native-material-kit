@@ -12,7 +12,7 @@ import { getTheme } from '../theme';
 import * as utils from '../utils';
 import { defaultProps, SpinnerProps } from './spinner_common';
 
-const MKSpinner = requireNativeComponent<SpinnerProps>('MKSpinner');
+const MKSpinner = requireNativeComponent('MKSpinner');
 
 /**
  * The default `Spinner` component.

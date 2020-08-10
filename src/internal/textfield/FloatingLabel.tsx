@@ -105,17 +105,19 @@ export default class FloatingLabel extends Component<FloatingLabelProps, Floatin
   aniFloatLabel(): Animated.CompositeAnimation[] {
     return this.props.floatingLabelEnabled
       ? [
-          Animated.sequence([
-            Animated.timing(this.state.opacity, {
-              toValue: 1,
-              duration: this.props.opacityAniDur,
-            }),
-            Animated.timing(this.state.progress, {
-              toValue: 0,
-              duration: this.props.floatingLabelAniDuration,
-            }),
-          ]),
-        ]
+        Animated.sequence([
+          Animated.timing(this.state.opacity, {
+            toValue: 1,
+            duration: this.props.opacityAniDur,
+            useNativeDriver: true,
+          }),
+          Animated.timing(this.state.progress, {
+            toValue: 0,
+            duration: this.props.floatingLabelAniDuration,
+            useNativeDriver: true,
+          }),
+        ]),
+      ]
       : [];
   }
 
@@ -123,17 +125,19 @@ export default class FloatingLabel extends Component<FloatingLabelProps, Floatin
   aniSinkLabel(): Animated.CompositeAnimation[] {
     return this.props.floatingLabelEnabled
       ? [
-          Animated.sequence([
-            Animated.timing(this.state.progress, {
-              toValue: 1,
-              duration: this.props.floatingLabelAniDuration,
-            }),
-            Animated.timing(this.state.opacity, {
-              toValue: 0,
-              duration: this.props.opacityAniDur,
-            }),
-          ]),
-        ]
+        Animated.sequence([
+          Animated.timing(this.state.progress, {
+            toValue: 1,
+            duration: this.props.floatingLabelAniDuration,
+            useNativeDriver: true,
+          }),
+          Animated.timing(this.state.opacity, {
+            toValue: 0,
+            duration: this.props.opacityAniDur,
+            useNativeDriver: true,
+          }),
+        ]),
+      ]
       : [];
   }
 
@@ -160,7 +164,7 @@ export default class FloatingLabel extends Component<FloatingLabelProps, Floatin
 
     return (
       <Animated.Text
-        ref={this.labelRef}
+        {...{ ref: this.labelRef } as any}
         pointerEvents="none"
         allowFontScaling={this.props.allowFontScaling}
         style={[

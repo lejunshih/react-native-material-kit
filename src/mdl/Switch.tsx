@@ -191,7 +191,7 @@ export default class Switch extends Component<SwitchProps, SwitchState> {
             }}
           />
           <AnimatedThumb // the 'thumb' part
-            ref={this.thumbRef}
+            {...{ ref: this.thumbRef } as any}
             {...thumbProps}
           />
         </View>

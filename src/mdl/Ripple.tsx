@@ -203,7 +203,7 @@ export default class Ripple extends Component<RippleProps, RippleState> {
       >
         {this.props.children}
         <Animated.View
-          ref={this.maskRef}
+          {...{ ref: this.maskRef } as any}
           style={{
             height: this.state.height,
             width: this.state.width,
@@ -219,7 +219,7 @@ export default class Ripple extends Component<RippleProps, RippleState> {
           }}
         >
           <Animated.View
-            ref={this.rippleRef}
+            {...{ ref: this.rippleRef } as any}
             style={{
               height: this.state.ripple.dia,
               width: this.state.ripple.dia,
