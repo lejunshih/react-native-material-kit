@@ -196,7 +196,7 @@ export default class Ripple extends Component<RippleProps, RippleState> {
     return (
       <MKTouchable
         ref={this.containerRef}
-        {...this.props}
+        {...this.props as any}
         style={[this.props.style, shadowStyle]}
         onTouch={this._onTouchEvent}
         onLayout={this._onLayout}

@@ -11,7 +11,7 @@ import { TouchableWithoutFeedback, TouchableWithoutFeedbackProps } from 'react-n
 import { TouchEvent } from '../internal/MKTouchable';
 import MKColor from '../MKColor';
 import { getTheme } from '../theme';
-import { CheckedListener, NullableReactChild } from '../types';
+import { CheckedListener } from '../types';
 import * as utils from '../utils';
 import Ripple, { RippleProps } from './Ripple';
 
@@ -114,8 +114,8 @@ export default class IconToggle extends Component<IconToggleProps, IconToggleSta
    * @see [State List](http://developer.android.com/guide/topics/resources/drawable-resource.html#StateList) in Android development
    */
   private renderChildren = () =>
-    Children.map<NullableReactChild>(this.props.children, child =>
-      child && isViewForState(child, this.state.checked) ? child : undefined
+    Children.map(this.props.children, child =>
+      child && isViewForState(child as ReactChild, this.state.checked) ? child : undefined
     );
 
   /** Touch event handler */
